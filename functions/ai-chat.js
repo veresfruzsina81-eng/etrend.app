@@ -1,5 +1,3 @@
-// Netlify Functions futási környezet: Node 18+
-// A kliens NEM látja az API kulcsot — ez a biztonságos réteg.
 export async function handler(event) {
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
@@ -17,16 +15,12 @@ export async function handler(event) {
     const system = `
 Te egy magyar nyelvű fitnesz-asszisztens vagy. 
 Felhasználói cél: ${goalLabel}.
-Irányelvek:
-- Mindig magyarul válaszolj.
-- Adj praktikus, lépésről-lépésre tippeket edzésre és étkezésre.
-- Legyél kedves, motiváló, de óvatos: jelezd, hogy ez nem orvosi tanács.
-- Ha kérnek tervet, adj 3-5 napos mintaedzést és 1 nap mintaétrendet (grammokkal).
-- Ha makrókról kérdeznek, számolj a szokásos tartományokkal (fehérje 1.8–2.2 g/kg, zsír 0.8–1.0 g/kg).`;
+Mindig magyarul válaszolj, adj praktikus, motiváló tanácsokat.
+`;
 
-    // OpenAI Responses API (összeegyeztethető a GPT-4o-mini jellegű modellekkel)
     const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {
+      console.error("❌ OPENAI_API_KEY nincs beállítva!");
       return { statusCode: 500, body: JSON.stringify({ error: "Hiányzó OPENAI_API_KEY" }) };
     }
 
@@ -43,23 +37,25 @@ Irányelvek:
           { role: "user", content: prompt }
         ],
         temperature: 0.6,
-        max_output_tokens: 600
+        max_output_tokens: 500
       })
     });
 
+    const text = await response.text();
+    console.log("🔎 OpenAI raw response:", text);
+
     if (!response.ok) {
-      const txt = await response.text();
-      return { statusCode: response.status, body: JSON.stringify({ error: txt }) };
+      return { statusCode: response.status, body: JSON.stringify({ error: text }) };
     }
 
-    const json = await response.json();
-    // A Responses API egységes "output_text" mezőt biztosíthat; 
-    // ha nem, akkor illesztünk fallbacket.
+    const json = JSON.parse(text);
+
+    // próbáljunk több mezőt
     const reply =
       json.output_text ||
+      json.output?.[0]?.content?.[0]?.text ||
       json.choices?.[0]?.message?.content ||
-      json.data?.[0]?.content?.[0]?.text ||
-      "Szia! Hogyan segíthetek a célodban?";
+      "⚠️ Nem jött értelmezhető válasz.";
 
     return {
       statusCode: 200,
@@ -67,6 +63,7 @@ Irányelvek:
       body: JSON.stringify({ reply })
     };
   } catch (err) {
+    console.error("❌ Function error:", err);
     return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
   }
 }

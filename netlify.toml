@@ -1,0 +1,13 @@
+[build]
+  command = ""
+  functions = "functions"
+  publish = "."
+
+[functions]
+  node_bundler = "esbuild"
+
+[dev]
+  framework = "#static"
+
+[functions."ai-chat"]
+  included_files = []

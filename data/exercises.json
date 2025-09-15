@@ -1,0 +1,14 @@
+[
+  {"id":"squat","name":"Guggolás","muscle":["láb","far"],"equip":["saját testsúly"],"level":"kezdő","img":"assets/exercises/squat.jpg","steps":["Állj vállszéles terpeszbe.","Csípőt hátra, térd a lábujj irányába.","Menj le párhuzamig, majd fel."]},
+  {"id":"pushup","name":"Fekvőtámasz","muscle":["mell","kar"],"equip":["saját testsúly"],"level":"kezdő","img":"assets/exercises/pushup.jpg","steps":["Test egyenes plankban.","Könyök 45°-ban.","Mellkas közel a talajhoz, majd fel."]},
+  {"id":"plank","name":"Plank","muscle":["törzs"],"equip":["saját testsúly"],"level":"kezdő","img":"assets/exercises/plank.jpg","steps":["Könyök a váll alatt.","Törzs feszes, derék nem esik be.","Lélegezz nyugodtan."]},
+  {"id":"lunge","name":"Kitörés","muscle":["láb","far"],"equip":["saját testsúly"],"level":"kezdő","img":"assets/exercises/lunge.jpg","steps":["Lépj előre nagyot.","Hátsó térd közel a talajhoz.","Toldd vissza magad."]},
+  {"id":"hip_thrust","name":"Csípőemelés","muscle":["far"],"equip":["saját testsúly"],"level":"kezdő","img":"assets/exercises/hip_thrust.jpg","steps":["Sarok a talajon.","Feszes far, medence felfelé.","Felül 1 mp tartás."]},
+  {"id":"row_dumbbell","name":"Evezés kézisúllyal","muscle":["hát","kar"],"equip":["kézisúly"],"level":"közép","img":"assets/exercises/row_dumbbell.jpg","steps":["Törzs előredöntve.","Lapocka hátra.","Húzd a súlyt a csípőig."]},
+  {"id":"shoulder_press","name":"Vállnyomás","muscle":["váll","kar"],"equip":["kézisúly"],"level":"közép","img":"assets/exercises/shoulder_press.jpg","steps":["Kiindulás vállmagasság.","Nyomd fel a súlyt fej fölé.","Kontrolláltan vissza."]},
+  {"id":"dead_bug","name":"Dead bug","muscle":["törzs"],"equip":["saját testsúly"],"level":"kezdő","img":"assets/exercises/dead_bug.jpg","steps":["Derék a talajon.","Ellentétes kar-láb nyújt.","Vissza középhelyzetbe."]},
+  {"id":"glute_bridge","name":"Glute bridge","muscle":["far","törzs"],"equip":["saját testsúly"],"level":"kezdő","img":"assets/exercises/glute_bridge.jpg","steps":["Sarok közel a fenékhez.","Csípőt emel fel.","Felül feszíts."]},
+  {"id":"russian_twist","name":"Orosz twist","muscle":["törzs"],"equip":["saját testsúly"],"level":"közép","img":"assets/exercises/russian_twist.jpg","steps":["Egyenes hát.","Törzs rotáció jobbra-balra.","Láb lehet elemelve."]},
+  {"id":"jumping_jack","name":"Jumping jack","muscle":["kardió"],"equip":["saját testsúly"],"level":"kezdő","img":"assets/exercises/jumping_jack.jpg","steps":["Ugrás terpeszbe, karok fel.","Vissza alapállásba.","Tarts ritmust."]},
+  {"id":"burpee","name":"Burpee","muscle":["teljes test","kardió"],"equip":["saját testsúly"],"level":"közép","img":"assets/exercises/burpee.jpg","steps":["Leguggolsz, plank, fekvő opcionális.","Vissza és felugrás.","Ismételd."]}
+]

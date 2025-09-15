@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>FitMate HU – Fogyás • Szálkásítás • Hízás + AI</title>
+  <meta name="description" content="Magyar nyelvű fitnesz app: kalória- és makrókalkulátor fogyáshoz, szálkásításhoz, hízáshoz, és beépített AI chat.">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="shell">
+    <h1>FitMate <span class="accent">HU</span></h1>
+    <p class="sub">Fogyás • Szálkásítás • Hízás — magyar AI tanácsadóval</p>
+  </header>
+
+  <main class="shell grid">
+    <section class="card">
+      <h2>Cél kiválasztása</h2>
+      <div class="tabs" role="tablist" aria-label="Cél">
+        <button class="tab active" data-goal="fogyas">Fogyás</button>
+        <button class="tab" data-goal="szalkasitas">Szálkásítás</button>
+        <button class="tab" data-goal="hizas">Hízás</button>
+      </div>
+
+      <form id="calc" class="form">
+        <div class="row">
+          <label>Nem</label>
+          <select id="sex" required>
+            <option value="male">Férfi</option>
+            <option value="female">Nő</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label>Életkor (év)</label>
+          <input type="number" id="age" min="10" max="100" value="26" required />
+        </div>
+
+        <div class="row">
+          <label>Magasság (cm)</label>
+          <input type="number" id="height" min="120" max="230" value="175" required />
+        </div>
+
+        <div class="row">
+          <label>Testsúly (kg)</label>
+          <input type="number" id="weight" min="30" max="250" value="75" required />
+        </div>
+
+        <div class="row">
+          <label>Aktivitás</label>
+          <select id="activity" required>
+            <option value="1.2">Alacsony (ülőmunka)</option>
+            <option value="1.375">Enyhe (1–3 edzés/hét)</option>
+            <option value="1.55" selected>Közepes (3–5 edzés/hét)</option>
+            <option value="1.725">Magas (6–7 edzés/hét)</option>
+            <option value="1.9">Nagyon magas (fizikai munka + edzés)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn">Számolás</button>
+      </form>
+
+      <div id="results" class="results hidden" aria-live="polite"></div>
+      <p class="disclaimer">Figyelem: ez oktatási célú kalkulátor. Egészségügyi kérdésekben fordulj szakemberhez.</p>
+    </section>
+
+    <section class="card chat">
+      <h2>AI chat (magyar)</h2>
+      <div id="chatLog" class="chat-log" aria-live="polite"></div>
+      <form id="chatForm" class="chat-form">
+        <input id="chatInput" type="text" placeholder="Írd ide a kérdésed… (pl. adj 4 napos edzéstervet szálkásításhoz)" autocomplete="off" required />
+        <button class="btn" type="submit">Küldés</button>
+      </form>
+      <p class="hint">A chat a célodhoz igazítja a válaszokat (fogyás / szálkásítás / hízás).</p>
+    </section>
+  </main>
+
+  <footer class="shell foot">
+    <small>© 2025 FitMate HU • Készítette: Te 😊 • Host: Netlify • Kód: GitHub</small>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

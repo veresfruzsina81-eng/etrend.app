@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>FitMate HU – Fogyás • Szálkásítás • Hízás + AI</title>
-  <meta name="description" content="Magyar nyelvű fitnesz app: kalória- és makrókalkulátor fogyáshoz, szálkásításhoz, hízáshoz, és beépített AI chat.">
+  <meta name="description" content="Magyar nyelvű fitnesz app: kalória- és makrókalkulátor, edzés- és étrendötletek, gyakorlat-könyvtár képekkel, és beépített magyar AI chat.">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -14,6 +14,7 @@
   </header>
 
   <main class="shell grid">
+    <!-- Kalkulátor -->
     <section class="card">
       <h2>Cél kiválasztása</h2>
       <div class="tabs" role="tablist" aria-label="Cél">
@@ -64,6 +65,7 @@
       <p class="disclaimer">Figyelem: ez oktatási célú kalkulátor. Egészségügyi kérdésekben fordulj szakemberhez.</p>
     </section>
 
+    <!-- AI chat -->
     <section class="card chat">
       <h2>AI chat (magyar)</h2>
       <div id="chatLog" class="chat-log" aria-live="polite"></div>
@@ -73,11 +75,75 @@
       </form>
       <p class="hint">A chat a célodhoz igazítja a válaszokat (fogyás / szálkásítás / hízás).</p>
     </section>
+
+    <!-- Gyakorlatok könyvtár -->
+    <section class="card" style="grid-column: 1 / -1;">
+      <h2>Gyakorlatok (képekkel)</h2>
+      <div class="filters">
+        <select id="f-muscle" aria-label="Izomcsoport szűrő">
+          <option value="">Izomcsoport (összes)</option>
+          <option>láb</option><option>far</option><option>mell</option>
+          <option>hát</option><option>váll</option><option>kar</option>
+          <option>törzs</option><option>kardió</option><option>teljes test</option>
+        </select>
+        <select id="f-level" aria-label="Szint szűrő">
+          <option value="">Szint (összes)</option>
+          <option>kezdő</option><option>közép</option>
+        </select>
+        <select id="f-equip" aria-label="Eszköz szűrő">
+          <option value="">Eszköz (összes)</option>
+          <option>saját testsúly</option><option>kézisúly</option>
+        </select>
+        <input id="f-q" type="text" placeholder="Keresés név alapján…">
+      </div>
+      <div id="ex-grid" class="ex-grid"></div>
+    </section>
+
+    <!-- Program generátor -->
+    <section class="card" style="grid-column: 1 / -1;">
+      <h2>Gyors edzésprogram</h2>
+      <p>Válassz célt és szintet – összerakok egy 3 napos mintaprogramot a könyvtárból.</p>
+      <div class="prog-row" style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+        <select id="p-goal" aria-label="Cél a programhoz">
+          <option value="fogyas">Fogyás</option>
+          <option value="szalkasitas">Szálkásítás</option>
+          <option value="hizas">Hízás</option>
+        </select>
+        <select id="p-level" aria-label="Szint a programhoz">
+          <option value="kezdő">Kezdő</option>
+          <option value="közép">Közép</option>
+        </select>
+        <button class="btn" id="p-gen" type="button">Program generálása</button>
+      </div>
+      <div id="p-out" class="results hidden" aria-live="polite"></div>
+    </section>
   </main>
 
   <footer class="shell foot">
     <small>© 2025 FitMate HU • Készítette: Te 😊 • Host: Netlify • Kód: GitHub</small>
   </footer>
+
+  <!-- Onboarding (felugró) -->
+  <div id="onb" class="onb hidden" role="dialog" aria-modal="true">
+    <div class="onb-card">
+      <h3>Üdv a FitMate HU-ban! 👋</h3>
+      <p>Válassz célt fent (Fogyás / Szálkásítás / Hízás), számold ki a makrókat, majd nézd meg a <strong>Gyakorlatok</strong> könyvtárat.
+      Ha kérdésed van, írj a <strong>magyar AI chatnek</strong> – edzéstervet és étrendet is kapsz.</p>
+      <label class="onb-chk"><input type="checkbox" id="onb-hide"> Ne mutasd többé</label>
+      <div class="onb-actions"><button class="btn" id="onb-ok" type="button">Kezdjük!</button></div>
+    </div>
+  </div>
+
+  <!-- Gyakorlat részletek (modal) -->
+  <div id="ex-modal" class="ex-modal hidden" role="dialog" aria-modal="true">
+    <div class="exm-card">
+      <button class="exm-close" id="exm-close" aria-label="Bezárás" type="button">×</button>
+      <img id="exm-img" alt="" />
+      <h3 id="exm-name"></h3>
+      <p class="muted"><span id="exm-meta"></span></p>
+      <ol id="exm-steps"></ol>
+    </div>
+  </div>
 
   <script src="app.js" defer></script>
 </body>

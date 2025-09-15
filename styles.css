@@ -69,3 +69,39 @@ input:focus, select:focus{border-color:var(--accent)}
 .hint{color:var(--muted); font-size:.9rem; margin-top:6px}
 
 .foot{color:var(--muted); text-align:center; padding:18px 0 28px}
+/* Gyakorlatok rács */
+.filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px}
+.filters input, .filters select{min-width:160px}
+
+.ex-grid{
+  display:grid; gap:12px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+.ex-card{
+  background:#0e1729; border:1px solid rgba(255,255,255,.08);
+  border-radius:14px; overflow:hidden; cursor:pointer;
+  display:flex; flex-direction:column;
+}
+.ex-card img{width:100%; height:120px; object-fit:cover}
+.ex-card .ex-body{padding:10px}
+.ex-card .ex-name{font-weight:600}
+.ex-card .ex-tags{color:var(--muted); font-size:.85rem}
+
+/* Modalok */
+.onb, .ex-modal{
+  position:fixed; inset:0; background:rgba(0,0,0,.55);
+  display:flex; align-items:center; justify-content:center; z-index:50;
+}
+.onb-card, .exm-card{
+  width:min(560px, 94%); background:#101a2c; border:1px solid rgba(255,255,255,.1);
+  border-radius:16px; padding:16px; box-shadow:0 20px 60px rgba(0,0,0,.45);
+}
+.onb-actions{display:flex; justify-content:flex-end; margin-top:10px}
+.onb-chk{display:flex; align-items:center; gap:8px; margin-top:8px}
+.exm-card img{width:100%; border-radius:10px; margin-bottom:10px}
+.exm-close{
+  position:absolute; margin:-6px -6px 0 0; right:16px; top:16px;
+  width:32px; height:32px; border-radius:999px; border:1px solid rgba(255,255,255,.2);
+  background:#0e1729; color:var(--text); cursor:pointer;
+}
+.muted{color:var(--muted)}
